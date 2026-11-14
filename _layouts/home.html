@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<section class="intro">
+  <h1 class="display">{{ site.tagline | default: site.title | escape }}</h1>
+</section>
+
+<section aria-labelledby="writing">
+  <h2 class="section-label" id="writing">Writing</h2>
+  {% if site.posts.size > 0 %}
+  <ul class="post-list" role="list">
+    {% for post in site.posts %}
+    <li class="post-row">
+      <time class="post-row__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+      <a class="post-row__link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      {% if post.description %}
+      <p class="post-row__desc">{{ post.description | escape }}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No posts yet. Add a Markdown file to the <code>_posts</code> folder to publish the first one.</p>
+  {% endif %}
+</section>

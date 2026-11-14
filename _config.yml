@@ -1,0 +1,49 @@
+# Site settings. Edit, commit and push: GitHub rebuilds the site in about a minute.
+
+title: f8idea
+tagline: Ideas, notes and things worth writing down.   # the big line on the home page
+description: A personal blog of ideas, notes and things worth writing down.   # shown in search results and link previews
+author: f8fvwgzc
+github_username: f8fvwgzc
+
+url: "https://f8fvwgzc.github.io"
+baseurl: ""
+lang: en
+
+# Links in the top-right corner of every page.
+nav:
+  - title: About
+    url: /about/
+  - title: RSS
+    url: /feed.xml
+
+# Post addresses look like /posts/hello-world/
+permalink: /posts/:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

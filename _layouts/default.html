@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#12100f" media="(prefers-color-scheme: dark)">
+  {% seo %}
+  {% feed_meta %}
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>{{ site.title | escape }}<span class="brand__mark" aria-hidden="true"></span></a>
+      {% if site.nav %}
+      <nav class="site-nav" aria-label="Main">
+        {% for item in site.nav %}
+        <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+        {% endfor %}
+      </nav>
+      {% endif %}
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <span>&copy; {{ site.time | date: "%Y" }} {{ site.author | escape }}</span>
+      {% if site.github_username %}
+      <a href="https://github.com/{{ site.github_username }}">GitHub</a>
+      {% endif %}
+    </div>
+  </footer>
+</body>
+</html>
