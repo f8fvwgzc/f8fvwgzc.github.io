@@ -17,21 +17,22 @@
   --selection: #fbd38d;
   --image-edge: rgba(0, 0, 0, 0.1);
 
-  /* Type */
+  /* Type. Sizes are in rem: 1rem is 12px on tablets and computers and 16px on
+     phones (see "Overall scale" below). */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  --text-sm: 0.875rem;     /* 14px: dates, nav, footer, code blocks */
-  --text-md: 1rem;         /* 16px: summaries, tables */
-  --text-base: 1.125rem;   /* 18px: body */
-  --text-lg: 1.375rem;     /* 22px: post titles in the list, h3, lead */
-  --text-xl: 1.75rem;      /* 28px: h2 */
-  --text-display: clamp(2rem, 1.3rem + 3.2vw, 2.75rem);   /* 32 to 44px: page titles */
+  --text-sm: 0.875rem;     /* dates, nav, footer, code blocks */
+  --text-md: 1rem;         /* summaries, tables */
+  --text-base: 1.125rem;   /* body */
+  --text-lg: 1.375rem;     /* post titles in the list, h3, lead */
+  --text-xl: 1.75rem;      /* h2 */
+  --text-display: clamp(2rem, 1.3rem + 3.2vw, 2.75rem);   /* page titles */
 
   /* Space and shape */
-  --measure: 40rem;        /* width of the reading column */
+  --measure: 46rem;        /* width of the reading column */
   --gutter: 1.25rem;       /* side padding on small screens */
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
 
   color-scheme: light dark;
 }
@@ -67,6 +68,15 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-padding-top: 2rem;
+}
+
+/* Overall scale. On tablets and computers everything (text, spacing, column) is
+   drawn a quarter smaller than the browser default. Change 75% to resize the
+   whole site at once. Phones keep the full size so text stays readable. */
+@media (min-width: 40rem) {
+  html {
+    font-size: 75%;
+  }
 }
 
 body {
@@ -290,9 +300,9 @@ main {
 .post-row__link::before {
   content: "";
   display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin: 0 8px 0 -14px;
+  width: 0.27em;
+  height: 0.27em;
+  margin: 0 0.36em 0 -0.63em;
   vertical-align: 0.13em;
   background: var(--accent);
   border-radius: 1px;
@@ -438,7 +448,7 @@ main {
 .prose a {
   text-decoration-line: underline;
   text-decoration-color: var(--accent);
-  text-decoration-thickness: 1.5px;
+  text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
   transition: color 120ms ease-out;
 }
@@ -571,6 +581,26 @@ main {
   border: 1px solid var(--line-strong);
   border-bottom-width: 2px;
   border-radius: var(--radius-sm);
+}
+
+/* Math (KaTeX) and diagrams (Mermaid) */
+
+.prose .katex-display {
+  margin: 1.4em 0 0;
+  padding-block: 0.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.prose .mermaid {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.prose .mermaid svg {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Syntax colors: comments recede, keywords take the accent, strings get one cool hue. */

@@ -1,0 +1,46 @@
+{% comment %}
+  Mermaid: draws diagrams from code blocks marked "mermaid".
+  Loaded only on pages that contain one. Colors and fonts come from the
+  site's own tokens in assets/css/style.css, so diagrams follow light and dark mode.
+  If a diagram cannot be drawn, its code block stays visible.
+{% endcomment %}
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.esm.min.mjs";
+
+  const root = getComputedStyle(document.documentElement);
+  const token = (name) => root.getPropertyValue(name).trim();
+
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      darkMode: matchMedia("(prefers-color-scheme: dark)").matches,
+      background: token("--bg"),
+      primaryColor: token("--surface"),
+      primaryTextColor: token("--text"),
+      primaryBorderColor: token("--line-strong"),
+      secondaryColor: token("--surface"),
+      tertiaryColor: token("--bg"),
+      lineColor: token("--text-3"),
+      textColor: token("--text"),
+      fontFamily: token("--font-sans"),
+      fontSize: getComputedStyle(document.body).fontSize
+    }
+  });
+
+  let count = 0;
+  for (const block of document.querySelectorAll(".language-mermaid")) {
+    const id = "diagram-" + count++;
+    const target = block.closest("pre") || block;
+    try {
+      const result = await mermaid.render(id, block.textContent.trim());
+      const figure = document.createElement("div");
+      figure.className = "mermaid";
+      figure.innerHTML = result.svg;
+      target.replaceWith(figure);
+    } catch (error) {
+      document.getElementById("d" + id)?.remove();
+      console.error("Mermaid could not draw a diagram:", error);
+    }
+  }
+</script>

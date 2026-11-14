@@ -57,6 +57,46 @@ fn main() {
 }
 ```
 
+## Math
+
+Formulas are written in LaTeX between double dollar signs. Inside a sentence they stay inline, like $$e^{i\pi} + 1 = 0$$. On lines of their own they are centered:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
+$$
+
+The source of the two formulas above:
+
+~~~text
+Inside a sentence they stay inline, like $$e^{i\pi} + 1 = 0$$.
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
+$$
+~~~
+
+## Diagrams
+
+A code block marked `mermaid` is drawn as a diagram:
+
+```mermaid
+flowchart LR
+  A[Write a post] --> B[Push to GitHub]
+  B --> C[GitHub builds the site]
+  C --> D[Post is live]
+```
+
+Its source:
+
+~~~text
+```mermaid
+flowchart LR
+  A[Write a post] --> B[Push to GitHub]
+  B --> C[GitHub builds the site]
+  C --> D[Post is live]
+```
+~~~
+
 ## Tables
 
 | Markdown | Result |

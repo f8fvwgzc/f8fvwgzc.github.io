@@ -20,6 +20,10 @@ nav:
 # Post addresses look like /posts/hello-world/
 permalink: /posts/:title/
 
+# Publish a post as soon as it is pushed, even when its date is still
+# "tomorrow" on GitHub's build server (which runs on UTC time).
+future: true
+
 markdown: kramdown
 kramdown:
   input: GFM
