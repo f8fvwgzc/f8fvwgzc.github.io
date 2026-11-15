@@ -12,6 +12,8 @@ lang: en
 
 # Links in the top-right corner of every page.
 nav:
+  - title: Books
+    url: /books/
   - title: About
     url: /about/
   - title: RSS
